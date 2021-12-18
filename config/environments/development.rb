@@ -1,4 +1,7 @@
 require "active_support/core_ext/integer/time"
+require 'socket'
+require 'ipaddr'
+
 
 Rails.application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
@@ -58,8 +61,14 @@ Rails.application.configure do
 
   # Suppress logger output for asset requests.
   config.assets.quiet = true
-
+  
   config.hosts << "3000-blush-wasp-tdnjsbzj.ws-us23.gitpod.io"
+
+  Rails.application.configure do
+    config.web_console.whiny_requests = false
+  end
+
+  config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
   # Raises error for missing translations.
   # config.i18n.raise_on_missing_translations = true
 
